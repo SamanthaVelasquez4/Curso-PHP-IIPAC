@@ -38,6 +38,7 @@
 
     echo "¿El numero es diferente a b? $esDiferente\n";
     echo "¿El numero es igual a b? $esIgual\n";
+    var_dump($esIgual); //muestra el tipo de dato y el valor
 
     $esMenor = ($numero < $b); //falso = 0
     $esMayor = ($numero > $b); //verdadero = 1
