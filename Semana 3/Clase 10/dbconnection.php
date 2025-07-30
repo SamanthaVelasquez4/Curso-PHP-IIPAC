@@ -1,5 +1,4 @@
 <?php
-
 /*
 CRUD -> CREATE, READ, UPDATE, DELETE
 SENTENCIAS SQL PARA BASE DE DATOS
@@ -10,7 +9,7 @@ SENTENCIAS SQL PARA BASE DE DATOS
 4. DELETE -> borrar
 */
 
-$server = "127.0.0.1";
+$server = "127.0.0.1"; //localhost
 $user = "root";
 $password = "";
 $db= "alumnos";
@@ -22,5 +21,4 @@ $conexion = new mysqli($server, $user, $password, $db);
 if($conexion->error){
     die("Error de conexion".$conexion->error);
 }
-
 ?>

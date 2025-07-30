@@ -1,76 +1,17 @@
 <?php
-$alumnos = [
-    [
-        "id" => 1,
-        "nombre" => "Ana Martínez",
-        "edad" => 20,
-        "carrera" => "Ingeniería en Sistemas",
-        "promedio" => 89.5
-    ],
-    [
-        "id" => 2,
-        "nombre" => "Carlos López",
-        "edad" => 22,
-        "carrera" => "Administración de Empresas",
-        "promedio" => 85.3
-    ],
-    [
-        "id" => 3,
-        "nombre" => "María Gómez",
-        "edad" => 21,
-        "carrera" => "Psicología",
-        "promedio" => 90.2
-    ],
-    [
-        "id" => 4,
-        "nombre" => "Luis Torres",
-        "edad" => 23,
-        "carrera" => "Derecho",
-        "promedio" => 78.9
-    ],
-    [
-        "id" => 5,
-        "nombre" => "Sofía Hernández",
-        "edad" => 20,
-        "carrera" => "Arquitectura",
-        "promedio" => 92.0
-    ],
-    [
-        "id" => 6,
-        "nombre" => "Javier Reyes",
-        "edad" => 24,
-        "carrera" => "Contaduría Pública",
-        "promedio" => 81.7
-    ],
-    [
-        "id" => 7,
-        "nombre" => "Daniela Pérez",
-        "edad" => 19,
-        "carrera" => "Medicina",
-        "promedio" => 95.6
-    ],
-    [
-        "id" => 8,
-        "nombre" => "Fernando Cruz",
-        "edad" => 22,
-        "carrera" => "Ingeniería Civil",
-        "promedio" => 87.4
-    ],
-    [
-        "id" => 9,
-        "nombre" => "Camila Rojas",
-        "edad" => 21,
-        "carrera" => "Biología",
-        "promedio" => 88.8
-    ],
-    [
-        "id" => 10,
-        "nombre" => "Andrés Mejía",
-        "edad" => 20,
-        "carrera" => "Informática",
-        "promedio" => 90.0
-    ]
-];
+include_once "dbconnection.php";
+
+$result = $conexion->execute_query("SELECT * FROM alumnos;");
+
+$alumnos = [];
+
+if($result){
+    foreach($result as $row){
+        $alumnos[]=$row;
+    }
+}
+
+$conexion->close();
 ?>
 
 <!DOCTYPE html>

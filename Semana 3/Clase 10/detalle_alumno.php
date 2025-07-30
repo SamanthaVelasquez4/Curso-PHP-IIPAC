@@ -1,91 +1,17 @@
 <?php
-$alumnos = [
-    [
-        "id" => 1,
-        "nombre" => "Ana Martínez",
-        "edad" => 20,
-        "carrera" => "Ingeniería en Sistemas",
-        "promedio" => 89.5
-    ],
-    [
-        "id" => 2,
-        "nombre" => "Carlos López",
-        "edad" => 22,
-        "carrera" => "Administración de Empresas",
-        "promedio" => 85.3
-    ],
-    [
-        "id" => 3,
-        "nombre" => "María Gómez",
-        "edad" => 21,
-        "carrera" => "Psicología",
-        "promedio" => 90.2
-    ],
-    [
-        "id" => 4,
-        "nombre" => "Luis Torres",
-        "edad" => 23,
-        "carrera" => "Derecho",
-        "promedio" => 78.9
-    ],
-    [
-        "id" => 5,
-        "nombre" => "Sofía Hernández",
-        "edad" => 20,
-        "carrera" => "Arquitectura",
-        "promedio" => 92.0
-    ],
-    [
-        "id" => 6,
-        "nombre" => "Javier Reyes",
-        "edad" => 24,
-        "carrera" => "Contaduría Pública",
-        "promedio" => 81.7
-    ],
-    [
-        "id" => 7,
-        "nombre" => "Daniela Pérez",
-        "edad" => 19,
-        "carrera" => "Medicina",
-        "promedio" => 95.6
-    ],
-    [
-        "id" => 8,
-        "nombre" => "Fernando Cruz",
-        "edad" => 22,
-        "carrera" => "Ingeniería Civil",
-        "promedio" => 87.4
-    ],
-    [
-        "id" => 9,
-        "nombre" => "Camila Rojas",
-        "edad" => 21,
-        "carrera" => "Biología",
-        "promedio" => 88.8
-    ],
-    [
-        "id" => 10,
-        "nombre" => "Andrés Mejía",
-        "edad" => 20,
-        "carrera" => "Informática",
-        "promedio" => 90.0
-    ]
-];
+include_once "dbconnection.php";
 
-if(isset($_GET[id])){
-    $encontrado = array_find($alumnos, function($alumno){
-        if($alumno[id]==$_GET[id]){
-            return $alumno;
-        }else{
-            return null;
-        }
-    });
+$encontrado = null;
+
+if(isset($_GET['id'])){
+    $result = $conexion->execute_query("SELECT * FROM alumnos WHERE id=?", [$_GET['id']]);
+    $encontrado = $result->fetch_assoc();
 }else{
     echo "No viene el id en la url <br>";
 }
 
 
-//var_dump($encontrado);
+$conexion->close();
 
 if($encontrado!=null):
 ?>
@@ -149,9 +75,6 @@ if($encontrado!=null):
         </div>
         <div class="campo">
             <strong>Carrera:</strong> <?php echo $encontrado['carrera']; ?>
-        </div>
-        <div class="campo">
-            <strong>Email:</strong> <?php echo $encontrado['email']; ?>
         </div>
         <div class="campo">
             <strong>Promedio:</strong> <?php echo $encontrado['promedio']; ?>
